@@ -1,14 +1,15 @@
 #!/bin/sh
 
-# ====================================================================================================
-# This script creates an image file containing both the bootloader and the program.
+# ==============================================================================
+# This script creates an image file containing both the bootloader and the 
+# program.
 # It first compiles the bootloader and the program.
 # Then it pads the bootloader executable, so it fills one sector,
 # and adds the boot signature so it is bootable.
 # Then it pads the program executable, so it fills 5 sectors,
 # as is expected by the bootloader (see bootloader.asm).
 # Finally it concatenates the two padded files in one image file.
-# ====================================================================================================
+# ==============================================================================
 
 # Compile bootloader
 nasm -f bin -o bootloader.bin bootloader.asm
@@ -30,3 +31,4 @@ cat bootloader.bin.padded program.bin.padded > image.img
 
 # Cleanup temporary files
 rm *.bin *.padded
+
